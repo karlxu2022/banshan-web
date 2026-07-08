@@ -282,22 +282,31 @@
         }
         .ai-analyze-btn:hover { background: rgba(142, 124, 104, 0.05); }
 
-        /* 移动端媒体查询 - 已包含修复 */
         @media (max-width: 768px) {
-            /* 修复方案：调整 padding，将内容整体向上挤，不使用 transform */
             .slide { 
-                padding: 10vw 8vw 20vw 8vw; /* 减小上边距，增加下边距，整体上移 */
-                justify-content: center; 
+                padding: 15vw 8vw; 
             }
             
-            /* 特殊处理第五页，防止底部文字被浮动按钮遮挡 */
+            /* 核心修改点：针对手机端将所有页的内容容器整体、安全地上移约 5% 视口高度，绝不影响外层物理页面滚动和层级 */
+            .content {
+                position: relative;
+                top: -5vh; 
+            }
+
+            /* 特殊优化第五页（数字禅院）：内容多、易被悬浮按钮遮挡，因此将其稍微上移多一点（-8vh），并且缩窄字间距与网格间距以腾出空间 */
             #slide-5 .content {
-                padding-bottom: 4rem; 
+                top: -8vh;
+            }
+            #slide-5 .grid-4 {
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+            #slide-5 .grid-item {
+                padding-top: 1rem;
             }
 
             .grid-4 { grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
             .audio-toggle { top: auto; bottom: 2rem; right: 2rem; }
-            
             /* Adjust AI Panel for mobile */
             .ai-fab { bottom: 2rem; left: 1rem; width: 44px; height: 44px; }
             .ai-panel { bottom: 5rem; left: 1rem; right: 1rem; width: auto; max-width: none; }
@@ -598,7 +607,7 @@
                         // 场景 1: 幻灯片解析请求
                         if (context === 'analyze') {
                             const slideMap = {
-                                'slide-1': "<strong>【视觉解析】</strong>第一屏采用极致留白与居中排版，定调品牌的高级感与不可忽视的稳重力量。<br><br><strong>【战略意图】</strong>提纲挈领抛出品牌愿景，‘借事修心，半山见众生’，瞬间建立情感共鸣，引导用户继续向下探索。",
+                                'slide-1': "<strong>【视觉解析】</strong>第一屏采用极致留白与居中排版，定调品牌的高级感与不可忽视的稳重力量。<br><br><strong>【战略意图】</strong>提纲领抛出品牌愿景，‘借事修心，半山见众生’，瞬间建立情感共鸣，引导用户继续向下探索。",
                                 'slide-2': "<strong>【视觉解析】</strong>黑色蒙版配合沉浸式动态媒体，营造出一种幽深的场域感。悬浮音频按钮是点睛之笔。<br><br><strong>【战略意图】</strong>作为情绪缓冲区，要求用户‘戴上耳机，深呼吸’，从喧嚣的物理世界强制过渡到品牌的‘数字禅院’语境中。",
                                 'slide-3': "<strong>【视觉解析】</strong>夜间模式配合深色背景，传递出一种时代的凝重感与压迫感。<br><br><strong>【战略意图】</strong>直击当代人的精神痛点。先引发焦虑共鸣，再抛出‘需要一次暂停’的品牌解药，逻辑清晰严密。",
                                 'slide-4': "<strong>【视觉解析】</strong>浅色蒙版带来视觉呼吸感，‘为何在半山’的巨大标题配合暖金点缀色，充满哲学思辨的张力。<br><br><strong>【战略意图】</strong>阐述品牌差异化定位的核心：不仰视、不俯视，强调中庸之道与‘允许一切发生’的觉察力。",

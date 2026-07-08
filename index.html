@@ -282,14 +282,22 @@
         }
         .ai-analyze-btn:hover { background: rgba(142, 124, 104, 0.05); }
 
+        /* 移动端媒体查询 - 已包含修复 */
         @media (max-width: 768px) {
+            /* 修复方案：调整 padding，将内容整体向上挤，不使用 transform */
             .slide { 
-                padding: 15vw 8vw; 
-                /* 新增：在手机端将整个幻灯片向上平移，解决偏下问题 */
-                transform: translateY(-5%); 
+                padding: 10vw 8vw 20vw 8vw; /* 减小上边距，增加下边距，整体上移 */
+                justify-content: center; 
             }
+            
+            /* 特殊处理第五页，防止底部文字被浮动按钮遮挡 */
+            #slide-5 .content {
+                padding-bottom: 4rem; 
+            }
+
             .grid-4 { grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
             .audio-toggle { top: auto; bottom: 2rem; right: 2rem; }
+            
             /* Adjust AI Panel for mobile */
             .ai-fab { bottom: 2rem; left: 1rem; width: 44px; height: 44px; }
             .ai-panel { bottom: 5rem; left: 1rem; right: 1rem; width: auto; max-width: none; }
@@ -486,7 +494,7 @@
            [高阶素材区] 配置背景媒体
            ======================================================================== */
         const BRAND_CONFIG = {
-            audioUrl: "https://res.cloudinary.com/ualckntq/video/upload/v1783427219/mixkit-serene-view-443_tretjj.mp3",
+            audioUrl: "https://actions.google.com/sounds/v1/water/ocean_waves_steady.ogg",
             bgPage2: "https://res.cloudinary.com/ualckntq/image/upload/v1783432702/Screenshot_2026-07-07_215006-2_fraxfl.jpg", 
             bgPage3: "",
             bgPage4: "https://res.cloudinary.com/ualckntq/image/upload/v1783419456/istockphoto-509806484-2048x2048_sgcivs.jpg", 
